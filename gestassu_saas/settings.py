@@ -128,3 +128,8 @@ AUTH_USER_MODEL = 'accounts.Utilisateur'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.GestAssuBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

@@ -8,17 +8,12 @@ def login_view(request):
         login_u = request.POST.get('login')
         password = request.POST.get('password')
         
-        # Try to find the user
-        try:
-            user = Utilisateur.objects.get(login_utilisateur=login_u)
-            # CHECK PASSWORD: For now, assuming standard Django hashing or plain text for dev
-            # In a real scenario, we might need a custom hasher if the DB uses MD5/SHA1
-            if user.check_password(password):
-                login(request, user)
-                return redirect('home') # Adjust as needed
-            else:
-                messages.error(request, "Mot de passe incorrect")
-        except Utilisateur.DoesNotExist:
-            messages.error(request, "Utilisateur non trouvé")
+        user = authenticate(request, username=login_u, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Identifiant ou mot de passe incorrect")
             
     return render(request, 'accounts/login.html')
