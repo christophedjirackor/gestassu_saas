@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary: #64748b;
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --primary: #964E36;
+            --primary-hover: #703B28;
+            --secondary: #966F45;
+            --accent: #E1CCB1;
+            --bg-gradient: linear-gradient(135deg, #1e130c 0%, #3a1c11 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(225, 204, 177, 0.1);
+            --text-main: #E1CCB1;
+            --text-muted: rgba(225, 204, 177, 0.7);
         }
 
         * {
@@ -48,8 +50,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header {
@@ -60,7 +69,7 @@
         .logo {
             font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(to right, #60a5fa, #2563eb);
+            background: linear-gradient(to right, #E1CCB1, #964E36);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
@@ -168,7 +177,7 @@
         .circle-1 {
             width: 300px;
             height: 300px;
-            background: rgba(37, 99, 235, 0.2);
+            background: rgba(150, 78, 54, 0.2);
             top: -100px;
             right: -100px;
         }
@@ -176,12 +185,13 @@
         .circle-2 {
             width: 400px;
             height: 400px;
-            background: rgba(96, 165, 250, 0.15);
+            background: rgba(150, 111, 69, 0.15);
             bottom: -150px;
             left: -150px;
         }
     </style>
 </head>
+
 <body>
     <div class="circle circle-1"></div>
     <div class="circle circle-2"></div>
@@ -193,11 +203,11 @@
         </div>
 
         {% if messages %}
-            {% for message in messages %}
-                <div class="messages">
-                    {{ message }}
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="messages">
+            {{ message }}
+        </div>
+        {% endfor %}
         {% endif %}
 
         <form method="POST">
@@ -224,4 +234,5 @@
         </div>
     </div>
 </body>
+
 </html>
