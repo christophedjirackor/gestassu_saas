@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.http import HttpResponse
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.conf.urls.static import static
 
 @login_required
 def home(request):
@@ -30,3 +32,6 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

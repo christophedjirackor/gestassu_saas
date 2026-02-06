@@ -9,7 +9,7 @@ class Utilisateur(AbstractBaseUser):
     idutilisateur = models.CharField(db_column='IDUTILISATEUR', primary_key=True, max_length=50)
     nom_utilisateur = models.CharField(db_column='Nom_utilisateur', max_length=255, blank=True, null=True)
     adresse_email = models.EmailField(db_column='Adresse_email', max_length=100, blank=True, null=True)
-    mot_de_passe = models.CharField(db_column='Mot_de_passe', max_length=255)
+    password = models.CharField(db_column='Mot_de_passe', max_length=255)
     tel_utilisateur = models.CharField(db_column='Tel_utilisateur', max_length=50, blank=True, null=True)
     role_utilisateur = models.CharField(db_column='Role_utilisateur', max_length=50, blank=True, null=True)
     login_utilisateur = models.CharField(db_column='login_utilisateur', unique=True, max_length=100)
@@ -38,13 +38,3 @@ class Utilisateur(AbstractBaseUser):
     @property
     def is_active(self):
         return not self.est_desactiver and not self.effacer
-
-    # Password field is mot_de_passe, but AbstractBaseUser expects 'password'
-    # We can handle this by overriding set_password and check_password or using an auth backend
-    @property
-    def password(self):
-        return self.mot_de_passe
-
-    @password.setter
-    def password(self, value):
-        self.mot_de_passe = value
